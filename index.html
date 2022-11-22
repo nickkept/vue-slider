@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Slider</title>
+    <!-- Third party  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <link rel="stylesheet" href="./css/style.css">
+
+</head>
+
+<body>
+    <div id="app">
+        <main class="container pb-5">
+            <h1 class="my-5 text-danger text-center">Vue Slider</h1>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <img :src="movie.images[currentImageIndex]" class="card-img-top" alt="...">
+                        <h3 class="card-title">{{ movie.title[currentImageIndex] }}</h3>
+                        <p class="card-text">{{ movie.text[currentImageIndex] }}</p>
+                        <div class="btns-container">
+                            <button class="btn btn-light" @click="goPrev">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <div class="flex-fill"></div>
+                            <button class="btn btn-light" @click="goNext">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                        <div class="d-flex flex-wrap">
+                            <div v-for="(image, i) in movie.images" class="thumbnail-container"
+                                :class="(i === currentImageIndex) ? 'active' : ''"
+                                :style=" `width: calc(100% / ${movie.images.length})` " @click="onThumbnailClick(i)">
+                                <img :src="image" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="./javascript/main.js"></script>
+</body>
+
+</html>
